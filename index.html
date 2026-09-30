@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pankaj — Web Developer</title>
+<meta name="description" content="Pankaj builds fast, modern websites for small businesses. IIT Kharagpur." />
+<style>
+  :root {
+    --bg: #0b0f14;
+    --surface: #121822;
+    --surface-2: #18202e;
+    --text: #e8edf3;
+    --muted: #9aa7b8;
+    --accent: #22d3ee;
+    --accent-dim: rgba(34, 211, 238, 0.12);
+    --border: rgba(255, 255, 255, 0.08);
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(11, 15, 20, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; font-size: 0.95rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #062a30 !important; font-weight: 700;
+    padding: 8px 18px; border-radius: 999px;
+  }
+  .nav-cta:hover { filter: brightness(1.1); }
+
+  /* Hero */
+  .hero { padding: 110px 0 80px; }
+  .hero .kicker {
+    display: inline-block; font-size: 0.85rem; color: var(--accent);
+    background: var(--accent-dim); border: 1px solid rgba(34,211,238,0.25);
+    padding: 6px 14px; border-radius: 999px; margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.08;
+    letter-spacing: -0.03em; font-weight: 800; margin-bottom: 20px;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(90deg, #22d3ee, #818cf8);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin-bottom: 36px; }
+  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 13px 28px; border-radius: 10px;
+    font-weight: 700; font-size: 1rem; transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--accent); color: #062a30; }
+  .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn-ghost:hover { border-color: var(--accent); }
+
+  /* Sections */
+  section { padding: 72px 0; }
+  .sec-label { color: var(--accent); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+  .sec-title { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .sec-sub { color: var(--muted); max-width: 640px; margin-bottom: 36px; }
+
+  /* Skills */
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 9px 18px; border-radius: 999px; font-size: 0.95rem; color: var(--text);
+  }
+  .pill small { color: var(--muted); }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(34,211,238,0.4); }
+  .card h3 { font-size: 1.25rem; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .card p { color: var(--muted); font-size: 0.97rem; margin-bottom: 18px; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .tag { font-size: 0.78rem; background: var(--surface-2); border: 1px solid var(--border); padding: 4px 12px; border-radius: 999px; color: var(--muted); }
+  .card-links { display: flex; gap: 16px; font-size: 0.95rem; font-weight: 600; }
+  .card-links a { color: var(--accent); }
+  .card-links a:hover { text-decoration: underline; }
+  .featured { border: 1px solid rgba(34,211,238,0.35); background: linear-gradient(180deg, rgba(34,211,238,0.06), var(--surface)); }
+  .featured-badge { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+
+  /* Services */
+  .price { font-size: 1.6rem; font-weight: 800; color: var(--accent); margin: 6px 0 14px; }
+  .price small { font-size: 0.9rem; color: var(--muted); font-weight: 400; }
+  .card ul { list-style: none; color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+  .card ul li { padding: 6px 0 6px 26px; position: relative; }
+  .card ul li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+  /* Contact */
+  .contact-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 44px; text-align: center;
+  }
+  .contact-box h2 { font-size: 1.8rem; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .contact-box p { color: var(--muted); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 0.9rem; text-align: center; }
+
+  @media (max-width: 640px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero { padding: 72px 0 56px; }
+    section { padding: 52px 0; }
+    .contact-box { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">pankaj<span>.dev</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#contact" class="nav-cta">Hire me</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="kicker">Available for freelance projects</span>
+    <h1>I build websites that bring <span class="grad">small businesses</span> customers.</h1>
+    <p>I'm Pankaj, a developer at IIT Kharagpur. I design and ship fast, modern websites — from landing pages to full web apps with login, databases, and live features.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#contact">Get a website</a>
+      <a class="btn btn-ghost" href="#work">See my work</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">Developer, not a template installer.</h2>
+    <p class="sec-sub">I write real code and deploy real apps — no WordPress themes, no page builders. Everything below was designed, built, and shipped by me, and it's live on the internet right now.</p>
+    <div class="pills">
+      <span class="pill">React</span>
+      <span class="pill">JavaScript</span>
+      <span class="pill">Python <small>/ FastAPI</small></span>
+      <span class="pill">MongoDB</span>
+      <span class="pill">HTML / CSS</span>
+      <span class="pill">C / C++ <small>(learning)</small></span>
+      <span class="pill">Vercel / Render <small>deployment</small></span>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-label">Work</div>
+    <h2 class="sec-title">Things I've shipped.</h2>
+    <p class="sec-sub">Live projects, not mockups.</p>
+    <div class="cards">
+      <div class="card featured">
+        <span class="featured-badge">Featured project</span>
+        <h3>Quenvo — Smart Queue Management</h3>
+        <p>A full-stack web app: businesses create digital queues, customers join by scanning a QR code, and staff manage the line live — call next, complete, skip. Business login, real-time ticket status, everything working.</p>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">MongoDB</span><span class="tag">Vercel</span><span class="tag">Render</span>
+        </div>
+        <div class="card-links">
+          <a href="https://queflow-mvp.vercel.app" target="_blank" rel="noopener">Live site →</a>
+          <a href="https://github.com/pankajraw29/quenvo-mvp" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Your project here?</h3>
+        <p>I'm taking on a small number of client projects right now — landing pages, business sites, and simple web apps. If you have an idea, let's talk.</p>
+        <div class="card-links">
+          <a href="#contact">Start a project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-label">Services</div>
+    <h2 class="sec-title">What I can build for you.</h2>
+    <p class="sec-sub">Fixed pricing, no surprises. Every project includes mobile-friendly design and deployment.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Landing Page</h3>
+        <div class="price">₹5,000 <small>starting</small></div>
+        <ul>
+          <li>Single-page modern design</li>
+          <li>Mobile-friendly</li>
+          <li>Contact / WhatsApp integration</li>
+          <li>Live in under a week</li>
+        </ul>
+        <div class="card-links"><a href="#contact">Enquire →</a></div>
+      </div>
+      <div class="card">
+        <h3>Business Website</h3>
+        <div class="price">₹10,000 <small>starting</small></div>
+        <ul>
+          <li>Multi-page site for your business</li>
+          <li>Services, gallery, testimonials</li>
+          <li>Google Maps &amp; contact forms</li>
+          <li>Basic Google search setup</li>
+        </ul>
+        <div class="card-links"><a href="#contact">Enquire →</a></div>
+      </div>
+      <div class="card">
+        <h3>Custom Web App</h3>
+        <div class="price">Let's talk</div>
+        <ul>
+          <li>Login &amp; user accounts</li>
+          <li>Database-driven features</li>
+          <li>Dashboards, bookings, queues</li>
+          <li>Priced per project</li>
+        </ul>
+        <div class="card-links"><a href="#contact">Enquire →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="sec-label">Contact</div>
+      <h2>Have a project in mind?</h2>
+      <p>Tell me what your business needs — I'll reply within a day with a plan and a fixed price. No advance needed to start the conversation.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:pankajraw2926@kgpian.iitkgp.ac.in">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/pankajraw29" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://instagram.com/_pankaj_raw_29" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Pankaj · IIT Kharagpur · Built with code, no templates.</div>
+</footer>
+
+</body>
+</html>
